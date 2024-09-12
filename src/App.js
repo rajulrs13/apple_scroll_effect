@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from "@react-three/fiber";
+import React from "react";
+import { ScrollControls } from "@react-three/drei";
+import Macbook from "./Macbook";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const camera_obj = { fov: 12, position: [0, -10, 210] };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="main">
+      <div id="heading-container">
+        <h3 id="heading">Macbook Pro.</h3>
+      </div>
+      <Canvas camera={camera_obj}>
+        <ambientLight intensity={1} />
+        <directionalLight position={[0, 10, 10]} intensity={0.2} />
+        <directionalLight position={[0, 0, 10]} intensity={1} />
+        <directionalLight position={[0, -10, 10]} intensity={0.3} />
+
+        <ScrollControls pages={1}>
+          <Macbook />
+        </ScrollControls>
+      </Canvas>
     </div>
   );
-}
+};
 
 export default App;
